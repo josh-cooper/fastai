@@ -427,7 +427,7 @@ def train_sentencepiece(texts:Collection[str], path:PathOrStr, pre_rules: ListRu
     with open(raw_text_path, 'w', encoding=enc) as f: f.write("\n".join(texts))
     spec_tokens = ['\u2581'+s for s in defaults.text_spec_tok]
     SentencePieceTrainer.Train(" ".join([
-        f"--input={str(raw_text_path).replace(" ", "\\ ")} --max_sentence_length={max_sentence_len}",
+        f"--input={str(raw_text_path).replace(' ', '\\ ')} --max_sentence_length={max_sentence_len}",
         f"--character_coverage={ifnone(char_coverage, 0.99999 if lang in full_char_coverage_langs else 0.9998)}",
         f"--unk_id={len(defaults.text_spec_tok)} --pad_id=-1 --bos_id=-1 --eos_id=-1",
         f"--user_defined_symbols={','.join(spec_tokens)}",
